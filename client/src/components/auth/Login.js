@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { login } from '../../redux/actions/authAction';
+import PropTypes from 'prop-types';
 
-const Login = () => {
+const Login = ({ isAuth, login }) => {
     const [dataForm, setData] = useState({
         email: "",
         password: "",
@@ -16,27 +19,9 @@ const Login = () => {
     //post for register
     const handleSubmit = async e => {
         e.preventDefault();
-        const loginUser = { email, password }
-        try {
-            const config = {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'x-auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWVkNzc0MTI0YjBjNWEwNjkwM2FkZWIyIn0sImlhdCI6MTU5MTE3ODI1OSwiZXhwIjoxNTkxNTM4MjU5fQ.G4b_z4VAemRnhI3soRjjqSat5bWJIw8FUH33E9I5l3U'
-                }
-            }
-            const body = JSON.stringify(loginUser)
-
-            const res = await axios.post('api/auth', body, config);
-            console.log(res.data);
-            setData({
-                email: "",
-                password: "",
-            })
-        } catch (error) {
-            console.log(error.response.data);
-        }
+        login(email, password)
     }
-
+    if (isAuth) return (<Redirect to="/dashboard" />)
     return (
         <>
             <h1 className="large text-primary">Sign In</h1>
@@ -63,5 +48,10 @@ const Login = () => {
         </>
     );
 }
-
-export default Login;
+Login.propTypes = {
+    login: PropTypes.func.isRequired,
+    isAuth: PropTypes.bool,
+}
+export default connect(state => ({
+    isAuth: state.auth.isAuthenticated,
+}), { login })(Login);

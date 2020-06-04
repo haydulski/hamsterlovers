@@ -54,7 +54,7 @@ router.post('/', [
             //make unique user token
             let payload = { user: { id: user.id } }
             jwt.sign(payload, config.get('jwtSecret'),
-                { expiresIn: 360000 },
+                { expiresIn: '2h' },
                 (err, token) => {
                     if (err) console.log(err);
                     res.json({ token });
