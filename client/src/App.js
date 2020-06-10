@@ -5,6 +5,8 @@ import Alert from './components/layout/Alert';
 import Dash from './components/dashboard/Dashboard';
 import CreateProfile from './components/profile-forms/CreateProfile';
 import EditProfile from './components/profile-forms/EditProfile';
+import AddExp from './components/profile-forms/AddExp';
+import AddEdu from './components/profile-forms/AddEdu';
 import PrivateRoute from './components/routing/PrivateRoute';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Login from './components/auth/Login';
@@ -37,6 +39,8 @@ const App = () => {
             <PrivateRoute path="/dashboard" component={Dash} />
             <PrivateRoute path="/create-profile" component={CreateProfile} />
             <PrivateRoute path="/edit-profile" component={EditProfile} />
+            <PrivateRoute path="/add-experience" component={AddExp} />
+            <PrivateRoute path="/add-education" component={AddEdu} />
           </Switch>
         </section>
       </Router>
