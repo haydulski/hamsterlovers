@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const authCheck = require('../../middleware/auth');
 const Profile = require('../../models/Profile');
+const Posts = require('../../models/Posts');
 const User = require('../../models/User');
 const { check, validationResult } = require('express-validator');
 const normalize = require('normalize-url');
@@ -131,6 +132,7 @@ router.get('/user/:user_id', async (req, res) => {
 
 router.delete('/', authCheck, async (req, res) => {
     try {
+        await Posts.deleteMany({ user: req.user.id });
         await Profile.findOneAndDelete({ user: req.user.id });
         await User.findOneAndDelete({ _id: req.user.id });
         return res.send('User deleted');

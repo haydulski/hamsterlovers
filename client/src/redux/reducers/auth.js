@@ -2,7 +2,7 @@ import {
     REGISTER_FAILURE, REGISTER_SUCCESS,
     USER_LOADED, AUTH_FAILURE,
     LOGIN_SUCCESS, LOGIN_FAIL,
-    LOGOUT,
+    LOGOUT, ACOUNT_DELETED
 } from '../actions/types'
 
 const initialState = {
@@ -33,6 +33,7 @@ export default function (state = initialState, action) {
                 user: payload
             }
         case LOGOUT:
+        case ACOUNT_DELETED:
         case AUTH_FAILURE:
         case LOGIN_FAIL:
         case REGISTER_FAILURE:

@@ -42,10 +42,10 @@ const AddExp = ({ updateExperience, history }) => {
                 <div className="form-group">
                     <p><input type="checkbox" name="current" value={current} onClick={(e) => setForm({ ...formData, current: !current })} /> Current Job</p>
                 </div>
-                <div className="form-group">
+                {current ? null : (<div className="form-group">
                     <h4>To Date</h4>
                     <input type="date" name="to" value={to} onChange={handleInput} />
-                </div>
+                </div>)}
                 <div className="form-group">
                     <textarea
                         name="description"
@@ -55,7 +55,7 @@ const AddExp = ({ updateExperience, history }) => {
                         value={description} onChange={handleInput}
                     ></textarea>
                 </div>
-                <input type="submit" class="btn btn-primary my-1" />
+                <input type="submit" className="btn btn-primary my-1" />
                 <Link className="btn btn-light my-1" to="/dashboard">Go Back</Link>
             </form>
         </>

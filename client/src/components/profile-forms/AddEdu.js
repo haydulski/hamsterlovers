@@ -60,10 +60,10 @@ const AddEdu = ({ updateEducation, history }) => {
                         <input type="checkbox" name="current" value={current} onClick={(e) => setForm({ ...formData, current: !current })} /> Current School or Bootcamp
           </p>
                 </div>
-                <div className="form-group">
+                {current ? null : (<div className="form-group">
                     <h4>To Date</h4>
                     <input type="date" name="to" value={to} onChange={handleInput} />
-                </div>
+                </div>)}
                 <div className="form-group">
                     <textarea
                         name="description"
