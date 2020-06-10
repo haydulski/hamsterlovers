@@ -3,6 +3,8 @@ import Navbar from './components/layout/Navbar';
 import Landing from './components/layout/Landing';
 import Alert from './components/layout/Alert';
 import Dash from './components/dashboard/Dashboard';
+import CreateProfile from './components/profile-forms/CreateProfile';
+import EditProfile from './components/profile-forms/EditProfile';
 import PrivateRoute from './components/routing/PrivateRoute';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Login from './components/auth/Login';
@@ -33,6 +35,8 @@ const App = () => {
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
             <PrivateRoute path="/dashboard" component={Dash} />
+            <PrivateRoute path="/create-profile" component={CreateProfile} />
+            <PrivateRoute path="/edit-profile" component={EditProfile} />
           </Switch>
         </section>
       </Router>

@@ -26,7 +26,7 @@ router.get('/me', authCheck, async (req, res) => {
     }
 });
 
-// @route  POST api/profile/me
+// @route  POST api/profile
 // @desc   profile route for authenticate user
 // @access private
 
@@ -80,10 +80,10 @@ router.post('/', [authCheck, [
 
         let profile = await Profile.findOne({ user: req.user.id });
         if (profile) {
-            profile = await Profile.findByIdAndUpdate(
+            profile = await Profile.findOneAndUpdate(
                 { user: req.user.id },
                 { $set: profileFields },
-                { new: true }
+                { new: true, upsert: true }
             );
             return res.json(profile)
         }
@@ -92,7 +92,8 @@ router.post('/', [authCheck, [
         await profile.save();
         res.json(profile)
     } catch (error) {
-        res.status(500).send('Profile update error')
+        console.error(err.message);
+        res.status(501).send('Profile update error')
     }
 })
 
