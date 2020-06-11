@@ -35,7 +35,7 @@ const EditProfile = ({ profile: { profile, loading }, createProfile, getProfile,
             linkedin: loading || !profile.social.linkedin ? '' : profile.social.linkedin,
             facebook: loading || !profile.social.facebook ? '' : profile.social.facebook,
         })
-    }, [loading]);
+    }, [loading, getProfile]);
 
     const { company,
         location,

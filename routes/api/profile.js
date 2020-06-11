@@ -9,7 +9,7 @@ const normalize = require('normalize-url');
 const config = require('config');
 const request = require('request');
 const axios = require('axios');
-
+const checkObjectId = require('../../middleware/checkObjectId');
 // @route  get/api/profile/me
 // @desc   profile route for authenticate user
 // @access public
@@ -114,10 +114,10 @@ router.get('/', async (req, res) => {
 // @desc   get one user profile
 // @access public
 
-router.get('/user/:user_id', async (req, res) => {
+router.get('/user/:user_id', checkObjectId('user_id'), async (req, res) => {
     try {
         const profile = await Profile.findOne({ user: req.params.user_id }).populate('user', ['name', 'avatar']);
-        if (!profile) return res.status(400).send('There is no user with that id');
+        if (!profile) return res.status(400).json({ msg: 'There is no user with that id' });
         return res.json(profile)
     } catch (error) {
         if (error.kind == 'ObjectId') { return res.status(400).send('There is no user with that id') };

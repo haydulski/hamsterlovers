@@ -1,4 +1,4 @@
-import { PROFILE_ERROR, GET_PROFILE, UPDATE_PROFILE, CLEAR_PROFILE, ACOUNT_DELETED, GET_PROFILES } from './types';
+import { PROFILE_ERROR, GET_PROFILE, UPDATE_PROFILE, CLEAR_PROFILE, ACOUNT_DELETED, GET_PROFILES, GET_REPOS } from './types';
 import axios from 'axios';
 import { setAlert } from "./alert";
 
@@ -11,6 +11,7 @@ export const getProfile = () => async dispatch => {
             payload: res.data
         })
     } catch (err) {
+        dispatch({ type: CLEAR_PROFILE })
         dispatch({
             type: PROFILE_ERROR,
             payload: { msg: err.response.statusText, status: err.response.status }
@@ -32,14 +33,13 @@ export const allProfiles = () => async dispatch => {
         })
     }
 }
-export const getProfileById = (userId) => async dispatch => {
-
+export const getProfileById = userId => async dispatch => {
     try {
-        const res = await axios.get(`/api/profile/user/:${userId}`);
+        const res = await axios.get(`/api/profile/user/${userId}`);
         dispatch({
             type: GET_PROFILE,
             payload: res.data
-        })
+        });
     } catch (err) {
         dispatch({
             type: PROFILE_ERROR,
@@ -180,7 +180,7 @@ export const deleteEdu = (id) => async dispatch => {
 export const deleteAll = () => async dispatch => {
     if (window.confirm('Are you realy want that?')) {
         try {
-            const res = await axios.delete(`/api/profile`)
+            await axios.delete(`/api/profile`)
             dispatch({
                 type: CLEAR_PROFILE
             })

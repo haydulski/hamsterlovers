@@ -28,9 +28,7 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 profile: null,
-                loading: false,
                 repos: [],
-                errors: {}
             }
         case GET_PROFILES:
             return {
