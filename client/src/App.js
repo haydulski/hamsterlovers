@@ -13,7 +13,6 @@ import PrivateRoute from './components/routing/PrivateRoute';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
-import Posts from './components/posts/AllPosts';
 import './App.css';
 //redux
 import { Provider } from 'react-redux';

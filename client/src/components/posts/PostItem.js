@@ -3,8 +3,11 @@ import Moment from 'react-moment'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
+import { addLike, removeLike } from '../../redux/actions/postAction'
 
-const PostItem = ({ data: { _id, text, name, avatar, user, likes, comments, date }, auth }) => {
+const PostItem = ({
+    data: { _id, text, name, avatar, user, likes, comments, date }, auth,
+    addLike, removeLike }) => {
     return (
         <>
             <div className='post bg-white p-1 my-1'>
@@ -25,6 +28,7 @@ const PostItem = ({ data: { _id, text, name, avatar, user, likes, comments, date
                             <button
                                 type='button'
                                 className='btn btn-light'
+                                onClick={() => addLike(_id)}
                             >
                                 <i className='fas fa-thumbs-up' />{' '}
                                 <span>{likes.length > 0 && <span>{likes.length}</span>}</span>
@@ -33,6 +37,7 @@ const PostItem = ({ data: { _id, text, name, avatar, user, likes, comments, date
 
                                 type='button'
                                 className='btn btn-light'
+                                onClick={() => removeLike(_id)}
                             >
                                 <i className='fas fa-thumbs-down' />
                             </button>
@@ -59,8 +64,10 @@ const PostItem = ({ data: { _id, text, name, avatar, user, likes, comments, date
 }
 PostItem.propTypes = {
     data: PropTypes.object.isRequired,
-    auth: PropTypes.object.isRequired
+    auth: PropTypes.object.isRequired,
+    addLike: PropTypes.func.isRequired,
+    removeLike: PropTypes.func.isRequired,
 }
 export default connect(state => ({
     auth: state.auth
-}), null)(PostItem);
+}), { addLike, removeLike })(PostItem);
