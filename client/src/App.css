@@ -335,6 +335,7 @@ button {
   position: relative;
   background: url('./showcase.jpg') no-repeat center center/cover;
   height: 100vh;
+  overflow: hidden;
 }
 
 .landing-inner {
