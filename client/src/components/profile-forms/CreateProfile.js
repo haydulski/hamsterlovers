@@ -53,7 +53,7 @@ const CreateProfile = ({ createProfile, history }) => {
                 </div>
                 <div className="form-group">
                     <textarea placeholder="A short bio of yourself" name="bio" value={bio} onChange={handleInput}></textarea>
-                    <small className="form-text">Tell us a little about yourself</small>
+                    <small className="form-text">Tell us a little about you.</small>
                 </div>
 
                 <div className="my-2">

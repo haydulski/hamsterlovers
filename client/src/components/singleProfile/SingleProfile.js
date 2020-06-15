@@ -23,8 +23,8 @@ const SingleProfile = ({ match, auth, profile: { profile, loading }, getProfileB
                 <div class="profile-grid my-1">
                     <ProfileTop prof={profile} />
                     <ProfileAbout profile={profile} />
-                    <div className="profile-exp bg-white p-2">
-                        <h2 className="text-primary">Experience</h2>
+                    <div className="profile-exp bg-light p-2">
+                        <h2 className="text-primary">My hamsters</h2>
                         {profile.experience.length > 0 ? (<>
                             {profile.experience.map((experience) => (
                                 <ProfileExperience
@@ -33,7 +33,7 @@ const SingleProfile = ({ match, auth, profile: { profile, loading }, getProfileB
                                 />
                             ))}
                         </>
-                        ) : (<h4>No experience</h4>)}
+                        ) : (<h4>No hamsters added</h4>)}
                     </div>
                 </div>
 

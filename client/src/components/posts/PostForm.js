@@ -21,7 +21,7 @@ const PostForm = ({ addPost }) => {
             >
                 <textarea
                     name='text'
-                    cols='30'
+                    cols='60'
                     rows='5'
                     placeholder='Create a post'
                     value={text}

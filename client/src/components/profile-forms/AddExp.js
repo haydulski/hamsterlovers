@@ -20,10 +20,10 @@ const AddExp = ({ updateExperience, history }) => {
     return (
         <>
             <h1 className="large text-primary">
-                Add An Experience
+                Add your hamsters!
       </h1>
             <p className="lead">
-                <i className="fas fa-code-branch"></i> Add any developer/programming positions that you have had in the past</p>
+                <i className="fab fa-envira"></i> also any hamsters that you have in past...</p>
             <small>* = required field</small>
             <form className="form" onSubmit={handleSubmit}>
                 <div className="form-group">
@@ -37,7 +37,7 @@ const AddExp = ({ updateExperience, history }) => {
                     <input type="date" name="from" value={from} required onChange={handleInput} />
                 </div>
                 <div className="form-group">
-                    <p><input type="checkbox" name="current" value={current} onClick={(e) => setForm({ ...formData, current: !current })} /> Current Job</p>
+                    <p><input type="checkbox" name="current" value={current} onClick={(e) => setForm({ ...formData, current: !current })} /> It still alive ;)</p>
                 </div>
                 {current ? null : (<div className="form-group">
                     <h4>To Date</h4>
@@ -48,7 +48,7 @@ const AddExp = ({ updateExperience, history }) => {
                         name="description"
                         cols="30"
                         rows="5"
-                        placeholder="Job Description"
+                        placeholder="How he is/was like?"
                         value={description} onChange={handleInput}
                     ></textarea>
                 </div>

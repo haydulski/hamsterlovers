@@ -17,7 +17,7 @@ const Profiles = ({ allProfiles, profile: { profiles, loading } }) => {
                 <>
                     <h1 className="large text-primary">All hamster lovers</h1>
                     <p className="lead">
-                        <i className="fab fa-connectdevelop"></i>Browse members
+                        <i className="fas fa-carrot"></i>  Browse members
          </p>
                     <div className="profiles">
                         {profiles.length > 0 ? (profiles.map(pro => (<ProfileItem key={pro._id} profile={pro} />))) :

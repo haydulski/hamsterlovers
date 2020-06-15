@@ -1,9 +1,9 @@
 /* Global Styles */
 :root {
-  --primary-color: #1ebd5b;
-  --dark-color: #0a411f;
-  --light-color: #e9f0de;
-  --danger-color: #dc3545;
+  --primary-color: #17736ae1;
+  --dark-color: #025159;
+  --light-color: #f2f8e7dc;
+  --danger-color: #F25D27;
   --success-color: #28a745;
 }
 
@@ -18,7 +18,9 @@ body {
   font-size: 1rem;
   line-height: 1.6;
   background-color: #fff;
+  background: url('./showcase2.jpg') no-repeat center center/cover;
   color: #333;
+  min-height: 80vh;
 }
 
 a {
@@ -129,7 +131,7 @@ img {
 .btn {
   display: inline-block;
   background: var(--light-color);
-  color: #333;
+  color: #024059;
   padding: 0.4rem 1.3rem;
   font-size: 1rem;
   border: none;
@@ -169,7 +171,7 @@ img {
 .badge-light,
 .alert-light {
   background: var(--light-color);
-  color: #333;
+  color: #024059;
 }
 
 .btn-dark,
@@ -249,13 +251,22 @@ img {
 .form input[type='email'],
 .form input[type='password'],
 .form input[type='date'],
-.form select,
-.form textarea {
+.form select {
+  display: block;
+  width: 40%;
+  padding: 0.4rem;
+  font-size: 1.2rem;
+  border: 1px solid #ccc;
+  background-color: rgba(240, 255, 255, 0.562);
+  border-radius: 6px;
+}
+.form textarea{
   display: block;
   width: 100%;
   padding: 0.4rem;
   font-size: 1.2rem;
   border: 1px solid #ccc;
+  background-color: rgba(240, 255, 255, 0.562);
 }
 
 .form input[type='submit'],
@@ -295,7 +306,7 @@ button {
 }
 
 .table th {
-  background: var(--light-color);
+  background: #f7f7f7bb;
 }
 
 /* Navbar */
