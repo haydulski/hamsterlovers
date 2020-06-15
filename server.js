@@ -4,12 +4,12 @@ const PORT = process.env.PORT || 5000;
 const connectDB = require('./config/db');
 const path = require('path');
 
-//polaczenie z MongoAtlas
+//connect MongoAtlas
 connectDB();
-//middleware jsonowy
+//json middleware 
 app.use(express.json({ extended: false }))
 
-//nasluch portu
+//connection verification
 // app.get('/', (req, res) => {
 //     res.send('strona działa');
 // })
