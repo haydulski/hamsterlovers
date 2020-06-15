@@ -3,7 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const { check, validationResult } = require('express-validator');
 const User = require('../../models/User');
-const gravatar = require('gravatar');
+const randomProfile = require('random-profile-generator');
 const jwt = require('jsonwebtoken');
 const config = require('config');
 
@@ -28,12 +28,8 @@ router.post('/', [
                 errors: [{ msg: 'User exist already' }]
             })
         }
-        //get user grvatar
-        let avatar = gravatar.url(email, {
-            s: '200',
-            r: 'pg',
-            d: 'mm'
-        });
+        //get user random avatar
+        let avatar = randomProfile.avatar();
         user = new User({
             name,
             email,

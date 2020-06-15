@@ -31,45 +31,27 @@ router.get('/me', authCheck, async (req, res) => {
 // @desc   profile route for authenticate user
 // @access private
 
-router.post('/', [authCheck, [
-    check('status', 'Status is requried').not().isEmpty(),
-    check('skills', 'Skills are required ').not().isEmpty()
-]], async (req, res) => {
+router.post('/', authCheck, async (req, res) => {
 
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() })
-    }
     //build profile object
     const {
-        company,
         location,
-        website,
+        motto,
         bio,
-        skills,
-        status,
-        githubusername,
         youtube,
         twitter,
         instagram,
-        linkedin,
         facebook
     } = req.body;
 
     const profileFields = {
         user: req.user.id,
-        company,
+        motto,
         location,
-        website: website === '' ? '' : normalize(website, { forceHttps: true }),
-        bio,
-        skills: Array.isArray(skills)
-            ? skills
-            : skills.split(',').map((skill) => ' ' + skill.trim()),
-        status,
-        githubusername
+        bio
     };
     //building social objects
-    const socialfields = { youtube, twitter, instagram, linkedin, facebook };
+    const socialfields = { youtube, twitter, instagram, facebook };
 
     for (const [key, value] of Object.entries(socialfields)) {
         if (value && value.length > 0)
@@ -146,16 +128,16 @@ router.delete('/', authCheck, async (req, res) => {
 // @access private
 
 router.put('/experience', [authCheck, [
-    check('title', 'title is required').not().isEmpty(),
-    check('company', 'Company name is required').not().isEmpty(),
+    check('hamstername', 'Name of hamster is required').not().isEmpty(),
+    check('species', 'Species of hamster is required').not().isEmpty(),
     check('from', 'From date is required').not().isEmpty()
 ]], async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).send('Experience data validation error').json({ errors: errors.array() });
     }
-    const { title, company, current, from, to, location, description } = req.body;
-    const newExp = { title, company, current, from, to, location, description }
+    const { hamstername, species, current, from, to, description } = req.body;
+    const newExp = { hamstername, species, current, from, to, description }
 
     try {
 
@@ -187,72 +169,5 @@ router.delete('/experience/:id', authCheck, async (req, res) => {
     }
 })
 
-// @route  PUT api/profile/education
-// @desc   add education data to specific user
-// @access private
-router.put('/education', [authCheck, [
-    check('school', 'School is required').not().isEmpty(),
-    check('degree', 'Degree name is required').not().isEmpty(),
-    check('from', 'From date is required').not().isEmpty(),
-    check('fieldofstudy', 'Field of study is required').not().isEmpty()
-]], async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        return res.status(400).send('Education data validation error').json({ errors: errors.array() });
-    }
-    const { school, degree, from, to, current, fieldofstudy, description } = req.body;
-    const newExp = { school, degree, from, to, current, fieldofstudy, description }
-
-    try {
-
-        const profile = await Profile.findOne({ user: req.user.id });
-
-        profile.education.unshift(newExp);
-        await profile.save();
-        res.json(profile);
-    } catch (error) {
-        res.status(500).send('Server error, education update canceled.')
-    }
-})
-// @route  DELETE api/profile/education/:id
-// @desc   delete education data from list of education
-// @access private
-
-router.delete('/education/:id', authCheck, async (req, res) => {
-
-    try {
-        const profile = await Profile.findOne({ user: req.user.id })
-        const removeIndex = profile.education.map(item => item._id).indexOf(req.params.id);
-        if (removeIndex === -1) return res.status(404).json(profile);
-        profile.education.splice(removeIndex, 1);
-
-        await profile.save();
-        res.json(profile);
-    } catch (error) {
-        res.status(500).send('Server error, education delete canceled.')
-    }
-})
-// @route  GET api/profile/github/:username
-// @desc   get github profile
-// @access public
-
-router.get('/github/:username', async (req, res) => {
-
-    try {
-        const uri = encodeURI(
-            `https://api.github.com/users/${req.params.username}/repos?per_page=5&sort=created:asc`
-        );
-        const headers = {
-            'user-agent': 'node.js',
-            'Authorization': `token ${config.get('githubToken')}`
-        };
-
-        const gitHubResponse = await axios.get(uri, { headers });
-        return res.json(gitHubResponse.data);
-    } catch (err) {
-        console.error(err.message);
-        return res.status(404).json({ msg: 'No Github profile found' });
-    }
-})
 
 module.exports = router;

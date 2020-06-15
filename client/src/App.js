@@ -34,23 +34,26 @@ const App = () => {
     <Provider store={store}>
       <Router>
         <Navbar />
-        <Route exact path="/" component={Landing} />
-        <section className="container">
-          <Alert />
-          <Switch>
-            <Route path="/login" component={Login} />
-            <Route path="/register" component={Register} />
-            <Route path="/profiles" component={Profiles} />
-            <Route path="/profile/:id" component={SingleProfile} />
-            <PrivateRoute path="/dashboard" component={Dash} />
-            <PrivateRoute path="/create-profile" component={CreateProfile} />
-            <PrivateRoute path="/edit-profile" component={EditProfile} />
-            <PrivateRoute path="/add-experience" component={AddExp} />
-            <PrivateRoute path="/add-education" component={AddEdu} />
-            <PrivateRoute path="/posts" component={AllPosts} />
-            <PrivateRoute path="/post/:id" component={Post} />
-          </Switch>
-        </section>
+        <Switch>
+          <Route exact path="/" component={Landing} />
+          <section className="container">
+            <Alert />
+            <Switch>
+              <Route path="/login" component={Login} />
+              <Route path="/register" component={Register} />
+              <Route path="/profiles" exact component={Profiles} />
+              <Route path="/profile/:id" component={SingleProfile} />
+              <PrivateRoute path="/dashboard" component={Dash} />
+              <PrivateRoute path="/create-profile" component={CreateProfile} />
+              <PrivateRoute path="/edit-profile" component={EditProfile} />
+              <PrivateRoute path="/add-experience" component={AddExp} />
+              <PrivateRoute path="/add-education" component={AddEdu} />
+              <PrivateRoute path="/posts" component={AllPosts} />
+              <PrivateRoute path="/post/:id" component={Post} />
+              <Route component={Profiles} />
+            </Switch>
+          </section>
+        </Switch>
       </Router>
     </Provider>
   )
