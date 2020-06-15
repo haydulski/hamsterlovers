@@ -1,5 +1,1 @@
-{
-    "mongoURI": "mongodb+srv://new-Damian:1984lipiec1984@cluster0-xyn9w.mongodb.net/test?retryWrites=true&w=majority",
-    "jwtSecret": "tajemnica",
-    "githubToken": "9ed223b2980fe0487ff2f5322df111992aade89e"
-}
+{}
