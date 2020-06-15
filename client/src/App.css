@@ -1,8 +1,8 @@
 /* Global Styles */
 :root {
-  --primary-color: #17a2b8;
-  --dark-color: #343a40;
-  --light-color: #f4f4f4;
+  --primary-color: #1ebd5b;
+  --dark-color: #0a411f;
+  --light-color: #e9f0de;
   --danger-color: #dc3545;
   --success-color: #28a745;
 }
@@ -367,7 +367,7 @@ button {
   grid-template-areas:
     'top top'
     'about about'
-    'exp edu'
+    'exp exp'
     'github github';
   grid-gap: 1rem;
 }
@@ -408,11 +408,9 @@ button {
 
 .profile-exp {
   grid-area: exp;
+  text-align: center;
 }
 
-.profile-edu {
-  grid-area: edu;
-}
 
 .profile-exp h2,
 .profile-edu h2 {

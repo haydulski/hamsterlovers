@@ -8,7 +8,6 @@ import EditProfile from './components/profile-forms/EditProfile';
 import Profiles from './components/profiles/Profiles';
 import SingleProfile from './components/singleProfile/SingleProfile';
 import AddExp from './components/profile-forms/AddExp';
-import AddEdu from './components/profile-forms/AddEdu';
 import PrivateRoute from './components/routing/PrivateRoute';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Login from './components/auth/Login';
@@ -42,12 +41,11 @@ const App = () => {
               <Route path="/login" component={Login} />
               <Route path="/register" component={Register} />
               <Route path="/profiles" exact component={Profiles} />
-              <Route path="/profile/:id" component={SingleProfile} />
+              <PrivateRoute path="/profile/:id" component={SingleProfile} />
               <PrivateRoute path="/dashboard" component={Dash} />
               <PrivateRoute path="/create-profile" component={CreateProfile} />
               <PrivateRoute path="/edit-profile" component={EditProfile} />
               <PrivateRoute path="/add-experience" component={AddExp} />
-              <PrivateRoute path="/add-education" component={AddEdu} />
               <PrivateRoute path="/posts" component={AllPosts} />
               <PrivateRoute path="/post/:id" component={Post} />
               <Route component={Profiles} />

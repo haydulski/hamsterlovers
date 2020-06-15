@@ -4,25 +4,22 @@ import Moment from 'react-moment';
 import moment from 'moment';
 
 const ProfileExperience = ({
-  experience: { company, title, location, current, to, from, description }
+  experience: { hamstername, species, current, to, from, description }
 }) => (
-  <div>
-    <h3 className="text-dark">{company}</h3>
-    <p>
-      <Moment format="YYYY/MM/DD">{moment.utc(from)}</Moment> -{' '}
-      {!to ? ' Now' : <Moment format="YYYY/MM/DD">{moment.utc(to)}</Moment>}
-    </p>
-    <p>
-      <strong>Position: </strong> {title}
-    </p>
-    <p>
-      <strong>Location: </strong> {location}
-    </p>
-    <p>
-      <strong>Description: </strong> {description}
-    </p>
-  </div>
-);
+    <div>
+      <h3 className="text-dark">{hamstername}</h3>
+      <p>
+        <Moment format="DD/MM/YYYY">{moment.utc(from)}</Moment> -{' '}
+        {current ? ' Now' : <Moment format="DD/MM/YYYY">{moment.utc(to)}</Moment>}
+      </p>
+      <p>
+        <strong>Species: </strong> {species}
+      </p>
+      <p>
+        <strong>Description: </strong> {description}
+      </p>
+    </div>
+  );
 
 ProfileExperience.propTypes = {
   experience: PropTypes.object.isRequired

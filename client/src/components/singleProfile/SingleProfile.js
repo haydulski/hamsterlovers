@@ -7,7 +7,6 @@ import Spinner from '../layout/Spinner';
 import ProfileTop from './ProfileTop';
 import ProfileAbout from './ProfileAbout';
 import ProfileExperience from './ProfileExperience';
-import ProfileEducation from './ProfileEducation';
 
 const SingleProfile = ({ match, auth, profile: { profile, loading }, getProfileById }) => {
 
@@ -35,18 +34,6 @@ const SingleProfile = ({ match, auth, profile: { profile, loading }, getProfileB
                             ))}
                         </>
                         ) : (<h4>No experience</h4>)}
-                    </div>
-                    <div className="profile-edu bg-white p-2">
-                        <h2 className="text-primary">Education</h2>
-                        {profile.experience.length > 0 ? (
-                            <>
-                                {profile.education.map((edu) => (
-                                    <ProfileEducation
-                                        key={edu._id}
-                                        education={edu}
-                                    />
-                                ))}
-                            </>) : (<h4>No education data</h4>)}
                     </div>
                 </div>
 

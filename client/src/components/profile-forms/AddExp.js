@@ -7,9 +7,9 @@ import { updateExperience } from '../../redux/actions/profileAction';
 const AddExp = ({ updateExperience, history }) => {
 
     const [formData, setForm] = useState({
-        title: '', company: '', current: false, from: '', to: '', location: '', description: ''
+        hamstername: '', species: '', current: false, from: '', to: '', description: ''
     })
-    const { title, company, current, from, to, location, description } = formData;
+    const { hamstername, species, current, from, to, description } = formData;
     const handleInput = (e) => {
         setForm({ ...formData, [e.target.name]: e.target.value })
     }
@@ -27,17 +27,14 @@ const AddExp = ({ updateExperience, history }) => {
             <small>* = required field</small>
             <form className="form" onSubmit={handleSubmit}>
                 <div className="form-group">
-                    <input type="text" placeholder="* Job Title" name="title" required value={title} onChange={handleInput} />
+                    <input type="text" placeholder="* Hamster name" name="hamstername" required value={hamstername} onChange={handleInput} />
                 </div>
                 <div className="form-group">
-                    <input type="text" placeholder="* Company" name="company" required value={company} onChange={handleInput} />
-                </div>
-                <div className="form-group">
-                    <input type="text" placeholder="Location" name="location" value={location} onChange={handleInput} />
+                    <input type="text" placeholder="* Species" name="species" required value={species} onChange={handleInput} />
                 </div>
                 <div className="form-group">
                     <h4>From Date</h4>
-                    <input type="date" name="from" value={from} onChange={handleInput} />
+                    <input type="date" name="from" value={from} required onChange={handleInput} />
                 </div>
                 <div className="form-group">
                     <p><input type="checkbox" name="current" value={current} onClick={(e) => setForm({ ...formData, current: !current })} /> Current Job</p>

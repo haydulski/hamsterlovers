@@ -1,4 +1,4 @@
-import { PROFILE_ERROR, GET_PROFILE, UPDATE_PROFILE, CLEAR_PROFILE, ACOUNT_DELETED, GET_PROFILES, GET_REPOS } from './types';
+import { PROFILE_ERROR, GET_PROFILE, UPDATE_PROFILE, CLEAR_PROFILE, ACOUNT_DELETED, GET_PROFILES } from './types';
 import axios from 'axios';
 import { setAlert } from "./alert";
 
@@ -47,21 +47,7 @@ export const getProfileById = userId => async dispatch => {
         })
     }
 }
-export const getGitHub = (userName) => async dispatch => {
 
-    try {
-        const res = await axios.get(`/api/profile/github/:${userName}`);
-        dispatch({
-            type: GET_REPOS,
-            payload: res.data
-        })
-    } catch (err) {
-        dispatch({
-            type: PROFILE_ERROR,
-            payload: { msg: err.response.statusText, status: err.response.status }
-        })
-    }
-}
 
 export const createProfile = (formData, history, edit = false) => async dispatch => {
     const config = {
@@ -125,50 +111,6 @@ export const deleteExp = (id) => async dispatch => {
             payload: res.data
         })
         dispatch(setAlert('Experience removed', 'success'))
-    } catch (err) {
-        dispatch({
-            type: PROFILE_ERROR,
-            payload: { msg: err.response.statusText, status: err.response.status }
-        })
-    }
-}
-//update of education
-export const updateEducation = (formData, history) => async dispatch => {
-
-    try {
-        const config = {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }
-        const res = await axios.put('/api/profile/education', formData, config)
-        dispatch({
-            type: UPDATE_PROFILE,
-            payload: res.data
-        })
-        dispatch(setAlert('Education updated', 'success'))
-        history.push('/dashboard')
-
-    } catch (err) {
-        const errors = err.response.data.errors
-        if (errors) {
-            errors.forEach(err => dispatch(setAlert(err.msg, 'danger')))
-        }
-        dispatch({
-            type: PROFILE_ERROR,
-            payload: { msg: err.response.statusText, status: err.response.status }
-        })
-    }
-}
-//delete education
-export const deleteEdu = (id) => async dispatch => {
-    try {
-        const res = await axios.delete(`/api/profile/education/${id}`)
-        dispatch({
-            type: UPDATE_PROFILE,
-            payload: res.data
-        })
-        dispatch(setAlert('Education removed', 'success'))
     } catch (err) {
         dispatch({
             type: PROFILE_ERROR,

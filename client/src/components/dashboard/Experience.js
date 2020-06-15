@@ -7,8 +7,8 @@ import Moment from 'react-moment';
 const Experience = ({ experience, deleteExp }) => {
     const exps = experience.map(exp => (
         <tr id={exp._id}>
-            <td>{exp.company}</td>
-            <td className="hide-sm">{exp.title}</td>
+            <td>{exp.hamstername}</td>
+            <td className="hide-sm">{exp.species}</td>
             <td>
                 <Moment format='DD/MM/YYYY'>{exp.from}</Moment> -
     {exp.to === null ? (' Now') : (<Moment format='DD/MM/YYYY'>{exp.to}</Moment>)}
@@ -22,12 +22,12 @@ const Experience = ({ experience, deleteExp }) => {
     ))
     return (
         <>
-            <h2 className="my-2">Experience Credentials</h2>
+            <h2 className="my-2">My hamsters</h2>
             <table className="table">
                 <thead>
                     <tr>
-                        <th>Company</th>
-                        <th className="hide-sm">Title</th>
+                        <th>Hamster name</th>
+                        <th className="hide-sm">Species</th>
                         <th className="hide-sm">Years</th>
                         <th></th>
                     </tr>

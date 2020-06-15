@@ -15,9 +15,9 @@ const Profiles = ({ allProfiles, profile: { profiles, loading } }) => {
             {loading ?
                 <Spinner /> :
                 <>
-                    <h1 className="large text-primary">Developers</h1>
+                    <h1 className="large text-primary">All hamster lovers</h1>
                     <p className="lead">
-                        <i className="fab fa-connectdevelop"></i>Browse developers
+                        <i className="fab fa-connectdevelop"></i>Browse members
          </p>
                     <div className="profiles">
                         {profiles.length > 0 ? (profiles.map(pro => (<ProfileItem key={pro._id} profile={pro} />))) :
